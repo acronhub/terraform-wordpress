@@ -1,0 +1,13 @@
+.DS_Store
+
+!.gitkeep
+
+# terraform
+terraform/terraform.tfvars
+terraform/.terraform
+terraform/.terraform.d
+terraform/terraform.tfstate
+terraform/terraform.tfstate.backup
+
+terraform/.env
+terraform/.ssh/*
