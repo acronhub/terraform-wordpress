@@ -8,14 +8,15 @@ resource "aws_instance" "wordpress" {
     vpc_security_group_ids = [
         "${aws_security_group.accept_ssh_from_local.id}",
         "${aws_security_group.accept_ssh_from_owner.id}",
-        "${aws_security_group.accept_web_from_owner.id}"
+        "${aws_security_group.accept_web_from_owner.id}",
+        "${aws_security_group.accept_web_from_ec2.id}"
     ]
 
     associate_public_ip_address = true
 
     root_block_device {
         volume_type = "gp2"
-        volume_size = 30
+        volume_size = 10
     }
 
     key_name = "${aws_key_pair.wordpress-auth.id}"

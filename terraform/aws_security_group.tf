@@ -72,3 +72,21 @@ resource "aws_security_group" "accept_web_from_owner" {
         Name = "${var.project_name}-sg-accept-web-from-owner"
     }
 }
+
+resource "aws_security_group" "accept_web_from_ec2" {
+  name        = "${var.project_name}-${terraform.workspace}-accept_web_from_ec2"
+  description = "Allow http from Ec2 With ${var.project_name}"
+  vpc_id      = "${aws_vpc.project.id}"
+
+  # HTTP
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name = "${var.project_name}-${terraform.workspace}-sg-accept-web-from-ec2"
+  }
+}
